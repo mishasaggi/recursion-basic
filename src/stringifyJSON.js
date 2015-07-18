@@ -19,6 +19,7 @@ var stringifyJSON = function(obj) {
   		return '"'+obj+'"';
   	}
   	else if ((typeof(obj)==="number") || (typeof(obj)==="boolean")) {
+  		//simply concatenating quotes to make a string didn't work
   		return obj.toString();
   	}
   	//recursive function for arrays
@@ -38,6 +39,7 @@ var stringifyJSON = function(obj) {
   		var result = '';
   		if (Object.keys(obj).length === 0) return '{}';
   		else {
+  			//can't use simple for-in because no way to see the last element
   			for(var keys = Object.keys(obj), i = 0, end = keys.length; i < end; i++) {
   				var key = keys[i];
   				var value = obj[key];
